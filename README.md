@@ -4,8 +4,8 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
+|group_id|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :group
@@ -15,7 +15,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null : false|
+|name|string|null : false, add_index|
 |email|string|null : false, unique: true|
 
 ### Association
@@ -32,15 +32,17 @@
 ### Association
 - has_many :users, through: :members
 - has_many :members
+- has_many :massages
+
 
 ## messagesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |body|text|null false|
-|image|string|null false|
-|group_id|integer|null false, foreign_key: true|
-|user_id|integer|null false, foreign_key: true|
+|image|string||
+|group_id|references|null false, foreign_key: true|
+|user_id|references|null false, foreign_key: true|
 
 ### Association
 - belongs_to :user
